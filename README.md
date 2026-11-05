@@ -40,15 +40,15 @@ Bookings, the chosen city, favourites and "interested" flags are stored in `loca
 
 ## Layout
 
-```
-index.html          shell, import map, header and tab bar
-css/app.css         theme and all styles
-js/app.js           boot and hash router
-js/core.js          state, storage, icons, toast, modal, city picker, search
-js/data.js          movies, cities, cinemas, seat layouts, showtimes, pricing, occupancy
-js/posters.js       procedural poster and backdrop art
-js/theatre.js       3D auditorium (three.js)
-js/views/browse.js  home, movie, showtimes, cinemas
-js/views/seats.js   seat selection page
-js/views/checkout.js checkout, ticket, my tickets
-```
+Everything is in a single `index.html`:
+
+- **`<style>`:** the theme and all styles.
+- **`<script type="text/plain" id="rh-theatre">`:** the 3D auditorium (three.js). It's imported lazily as a module the first time the seat page opens.
+- **`<script type="module">`:** the app, one scoped block per part, in this order:
+  - `data`: movies, cities, cinemas, seat layouts, showtimes, pricing and occupancy.
+  - `posters`: procedural poster and backdrop art.
+  - `core`: state, storage, icons, toasts, modals, the city picker and search.
+  - `browse`: the home, movie, showtimes and cinema pages.
+  - `seats`: the seat selection page.
+  - `checkout`: checkout, the ticket and My tickets.
+  - `app`: startup and the hash router.
